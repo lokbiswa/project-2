@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;500&family=Crimson+Text:wght@400;600&display=swap");
+:root {
+  --bg-color: #004e98;
+  --fg-color: #3a6ea5;
+  --primary-color: #ebebeb;
+  --highlight: #eae2b7;
+  --drop-shadow: 4px 4px 10px rgb(23, 23, 83);
+}
+body {
+  font-family: "Crimson Pro";
+  background-color: var(--bg-color);
+}
+.fg {
+  /* spacing */
+  padding: 2rem;
+  /* background */
+  background-color: var(--fg-color);
+  box-shadow: var(--drop-shadow);
+  border-radius: 2%;
+}
+#list-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+  width: 200px;
+  color: var(--primary-color);
+}
+#list-container:hover {
+  background-color: #3f77b3;
+}
+.list-item {
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+#list-container label,
+#list-container input {
+  cursor: pointer;
+}
+
+#list-container input:hover {
+  transform: scale(1.2);
+}
+.list-item:hover {
+  color: var(--highlight);
+}
+.container {
+  margin: auto;
+  width: 265px;
+  padding: 1.5rem;
+}
+.container h1 {
+  color: var(--highlight);
+}
+input:checked + label {
+  color: var(--highlight);
+  text-decoration: line-through;
+}
+
+.fg .add-task {
+  margin-top: 1.5rem;
+}
+.fg .add-task input {
+  margin-bottom: 10px;
+  display: block;
+  width: 100%;
+}
+#add-task {
+  background-color: var(--bg-color);
+  color: white;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+#add-task:hover {
+  background-color: #045bac;
+}
+#new-task:focus {
+  outline: none;
+  border: 2px solid #a4d3ff;
+}
+#new-task {
+  border: 2px solid var(--fg-color);
+  height: 20px;
+}
