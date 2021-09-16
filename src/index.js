@@ -1,6 +1,7 @@
-// initialize tasks by reading localStorage
-const tasks = getTasks("tasks");
-const container = document.getElementById("list-container");
+/* // initialize tasks by reading localStorage
+const tasks = getTasks();
+
+const container = document.getElementById("tasks-container");
 const newTaskInput = document.getElementById("new-task");
 
 // template for every class
@@ -17,16 +18,19 @@ function createElement(task) {
   // div that holds task
   let listItem = document.createElement("div");
   listItem.id = task.id;
-  listItem.onclick = removeTask;
-  listItem.className = "list-item";
-  // task title+
+  listItem.className = "task";
+
+  // label for checkbox
   let label = document.createElement("label");
+  //So that Hover effect and click effect works both the ways wether its checkbox or its label 
   label.htmlFor = task.name.replace(/\s/g, "-");
   label.innerHTML = task.name;
+
   // check box
   let input = document.createElement("input");
   input.type = "checkbox";
   input.id = task.name.replace(/\s/g, "-");
+  input.onclick = () => removeTask(task);
 
   listItem.appendChild(input);
   listItem.appendChild(label);
@@ -35,49 +39,66 @@ function createElement(task) {
 
 // display task when page load
 function loadTasks() {
-  for (let task of tasks) {
-    createElement(task);
-  }
+  tasks.forEach((task) => createElement(task));
 }
 
-// creates a taks using class Task
+// creates a task using class Task
 function addTask() {
-  const newTask = newTaskInput.value;
-  if (newTask) {
-    let task = new Task(newTask);
+  const taskName = newTaskInput.value;
+  if (taskName) {
+    let task = new Task(taskName);
     tasks.push(task);
     createElement(task);
     storeTasks(tasks);
     newTaskInput.value = "";
   }
 }
-// safe taks in localStorage for session persistency
+// safe tasks in localStorage for session persistency
 function storeTasks(tasks) {
-  let stringified = JSON.stringify(tasks);
-  console.log(tasks);
-  localStorage.setItem("tasks", stringified);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 // read from localStorage
 function getTasks() {
-  let taskString = localStorage.getItem("tasks");
-  if (taskString) {
-    let tasks = JSON.parse(taskString);
-    return tasks;
-  }
-  return [];
+  return JSON.parse(localStorage.getItem("tasks")) || [];
 }
-// remove taks
-function removeTask(event) {
-  let taskElement = event.srcElement;
-  let taskContainer = taskElement.parentElement;
-  container.removeChild(taskContainer);
+// remove task
+function removeTask(task) {
+  index = tasks.indexOf(task);
+  tasks.splice(index, 1);
+  //updating stored task
+  storeTasks(tasks);
+  location.reload();
+}
 
-  //  updating stored taks
-  tasks.forEach((task, index) => {
-    if (task.id == taskContainer.id) {
-      console.log(index);
-      tasks.splice(index, 1);
-      storeTasks(tasks);
-    }
-  });
+Exercise one from JS course
+design a stop watch that has methods start, stop and duration.
+The start can only be fun once before stoping. 
+if the watch is not started you cannot stop. 
+the duration will give the total number of 
+second from the start methode is invoked.*/
+
+class Stopwatch {
+  #startTime = 0;
+  #stopTime = 0;
+  duration = 0;
+  #started = false;
+
+  start() {
+    if (!this.#started) {
+      this.#started = true;
+      this.#startTime = Date.now();
+      console.log(this.#startTime);
+    } else throw new Error("watch already started");
+  }
+  stop() {
+    if (this.#started) {
+      this.#started = false;
+      this.#stopTime = Date.now();
+      this.duration += (this.#stopTime - this.#startTime) / 1000;
+      console.log(this.duration);
+    } else throw new Error("watch not started");
+  }
+  reset() {
+    this.duration = 0;
+  }
 }

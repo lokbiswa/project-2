@@ -10,17 +10,12 @@
   <body onload="loadTasks()">
     <div class="container">
       <h1>TODO</h1>
-      <div class="fg">
-        <div id="list-container"></div>
-        <div class="add-task">
+      <div class="tasks-container-wrapper">
+        <div id="tasks-container"></div>
+        <form class="add-task" onsubmit="addTask()">
           <input type="text" placeholder="New Task" id="new-task" />
-          <input
-            type="button"
-            value="Add Task"
-            id="add-task"
-            onclick="addTask() "
-          />
-        </div>
+          <input type="submit" value="Add Task" id="btn-add-task" />
+        </form>
       </div>
     </div>
     <script src="./index.js"></script>

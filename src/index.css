@@ -5,20 +5,19 @@
   --primary-color: #ebebeb;
   --highlight: #eae2b7;
   --drop-shadow: 4px 4px 10px rgb(23, 23, 83);
+  --btn-heighlight: #045bac;
 }
 body {
   font-family: "Crimson Pro";
   background-color: var(--bg-color);
 }
-.fg {
-  /* spacing */
+.tasks-container-wrapper {
   padding: 2rem;
-  /* background */
   background-color: var(--fg-color);
   box-shadow: var(--drop-shadow);
   border-radius: 2%;
 }
-#list-container {
+#tasks-container {
   display: flex;
   flex-direction: column;
   margin-right: auto;
@@ -26,47 +25,45 @@ body {
   width: 200px;
   color: var(--primary-color);
 }
-#list-container:hover {
+#tasks-container:hover {
   background-color: #3f77b3;
 }
-.list-item {
+.task {
   text-transform: capitalize;
   font-size: 1.2rem;
   margin-bottom: 5px;
 }
-#list-container label,
-#list-container input {
+
+#tasks-container label,
+#tasks-container input {
   cursor: pointer;
 }
 
-#list-container input:hover {
+#tasks-container input:hover {
   transform: scale(1.2);
 }
-.list-item:hover {
+
+.task:hover {
   color: var(--highlight);
 }
 .container {
   margin: auto;
   width: 265px;
-  padding: 1.5rem;
 }
 .container h1 {
   color: var(--highlight);
 }
-input:checked + label {
-  color: var(--highlight);
-  text-decoration: line-through;
-}
 
-.fg .add-task {
+/* User Input Section */
+.tasks-container-wrapper .add-task {
   margin-top: 1.5rem;
 }
-.fg .add-task input {
+.tasks-container-wrapper .add-task input {
   margin-bottom: 10px;
   display: block;
   width: 100%;
 }
-#add-task {
+#btn-add-task {
   background-color: var(--bg-color);
   color: white;
   padding: 5px;
@@ -74,14 +71,15 @@ input:checked + label {
   cursor: pointer;
   margin-bottom: 0;
 }
-#add-task:hover {
-  background-color: #045bac;
+#btn-add-task:hover {
+  background-color: var(--btn-heighlight);
 }
 #new-task:focus {
   outline: none;
   border: 2px solid #a4d3ff;
 }
 #new-task {
+  /* setting border so that when on focus will stay same size */
   border: 2px solid var(--fg-color);
   height: 20px;
 }
